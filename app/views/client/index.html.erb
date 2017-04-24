@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html>
   <head>
     <title>AngularLesson</title>
     <%= csrf_meta_tags %>
@@ -9,13 +9,9 @@
   </head>
 
   <body>
-    <%= render 'links' %>
-
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    {{ 'fsdfsdfs' }}
-
-    <h1>HELLO</h1>
+    <%= yield %>
   </body>
 </html>
