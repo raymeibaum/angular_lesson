@@ -23,5 +23,6 @@ module AngularLesson
     # -- all .rb files in that directory are automatically loaded.
     config.generators.assets = false
     config.generators.helper = false
+    config.generators.jbuilder = false
   end
 end
