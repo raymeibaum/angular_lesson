@@ -2,13 +2,11 @@ class DoctorsController < ApplicationController
   before_action :set_doctor, only: [:show, :edit, :update, :destroy]
 
   # GET /doctors
-  # GET /doctors.json
   def index
     @doctors = Doctor.all
   end
 
   # GET /doctors/1
-  # GET /doctors/1.json
   def show
   end
 
@@ -22,7 +20,6 @@ class DoctorsController < ApplicationController
   end
 
   # POST /doctors
-  # POST /doctors.json
   def create
     @doctor = Doctor.new(doctor_params)
 
@@ -34,24 +31,18 @@ class DoctorsController < ApplicationController
   end
 
   # PATCH/PUT /doctors/1
-  # PATCH/PUT /doctors/1.json
   def update
     if @doctor.update(doctor_params)
       redirect_to @doctor, notice: 'Doctor was successfully updated.'
     else
       render :edit
-      render json: @doctor.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /doctors/1
-  # DELETE /doctors/1.json
   def destroy
     @doctor.destroy
-    respond_to do |format|
-      format.html { redirect_to doctors_url, notice: 'Doctor was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to doctors_url, notice: 'Doctor was successfully destroyed.'
   end
 
   private

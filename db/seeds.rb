@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Doctor.destroy_all
+User.destroy_all
+Appointment.destroy_all
 
 Doctor.create(
   name: 'Dr. John Zoidberg',
@@ -48,3 +50,17 @@ Doctor.create(
   accepts_insurance: false,
   photo_url: 'http://i.imgur.com/vrQVcVC.jpg'
 )
+
+10.times do
+  User.create(email: Faker::Internet.email, password: Faker::Lorem.word)
+end
+
+
+10.times do
+  Appointment.create(
+    user: User.order('RANDOM()').first,
+    doctor: Doctor.order('RANDOM()').first,
+    reason: Faker::Lorem.sentence,
+    date: Faker::Date.between(Date.today, 30.days.from_now)
+  )
+end
