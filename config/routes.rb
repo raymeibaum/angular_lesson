@@ -4,5 +4,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root to: 'doctors#index'
+  root to: 'client#index'
+  get "*unmatched_route" => "client#index"
 end
