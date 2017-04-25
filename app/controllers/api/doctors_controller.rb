@@ -1,11 +1,11 @@
-class DoctorsControllerAPI < ApplicationController
-  before_action :set_doctor, only: [:show, :update, :destroy]
+class Api::DoctorsController < ApplicationController
+  before_action :set_doctor, only: [:show, :edit, :update, :destroy]
 
   # GET /doctors
   def index
     @doctors = Doctor.all
 
-    render json: @doctors
+    render json: @doctor
   end
 
   # GET /doctors/1
@@ -13,12 +13,13 @@ class DoctorsControllerAPI < ApplicationController
     render json: @doctor
   end
 
+
   # POST /doctors
   def create
     @doctor = Doctor.new(doctor_params)
 
     if @doctor.save
-      render json: @doctor, status: :created, location: @doctor
+      render json: @doctor, status: :created
     else
       render json: @doctor.errors, status: :unprocessable_entity
     end
@@ -27,7 +28,7 @@ class DoctorsControllerAPI < ApplicationController
   # PATCH/PUT /doctors/1
   def update
     if @doctor.update(doctor_params)
-      render json: @doctor
+      render json: @doctor, status: 200
     else
       render json: @doctor.errors, status: :unprocessable_entity
     end
@@ -36,9 +37,12 @@ class DoctorsControllerAPI < ApplicationController
   # DELETE /doctors/1
   def destroy
     @doctor.destroy
+
+    render json: { message: 'Destroyed.' }
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_doctor
     @doctor = Doctor.find(params[:id])
