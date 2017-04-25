@@ -1,21 +1,19 @@
 angular
   .module('doctorApp')
   .component('doctorsList', {
-  templateUrl: 'doctorsList.template.html',
+  templateUrl: 'doctors/doctorsList.template.html',
   controller: DoctorsListController,
-  controllerAs: 'doctorListCtrl'
+  controllerAs: 'doctorsListCtrl'
 });
 
 
 function DoctorsListController($scope, $http) {
 
-  $scope.doctors = [
-    { name: 'decdfsdf' }
+  var vm = this;
+
+  vm.doctors = [
+    { name: 'Dr. Mantis Toboggan' },
+    { name: 'Dr. Jan Itor' }
   ];
 
-  console.log('hello');
-
-  function getDoctors() {
-
-  }
 }
