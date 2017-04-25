@@ -1,1 +1,1 @@
-angular.module('doctorApp', []);
+angular.module('doctorApp', ['templates']);

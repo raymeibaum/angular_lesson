@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body ng-app="doctorApp">
     <%= render 'shared/links' %>
     {{ 2 + 6 }}
     <p class="notice"><%= notice %></p>
