@@ -1,1 +1,3 @@
-angular.module('myApp', [])
+$(document).ready(function() {
+
+});
