@@ -1,22 +1,16 @@
-class DoctorsController < ApplicationController
-  before_action :set_doctor, only: [:show, :edit, :update, :destroy]
+class DoctorsControllerAPI < ApplicationController
+  before_action :set_doctor, only: [:show, :update, :destroy]
 
   # GET /doctors
   def index
     @doctors = Doctor.all
+
+    render json: @doctors
   end
 
   # GET /doctors/1
   def show
-  end
-
-  # GET /doctors/new
-  def new
-    @doctor = Doctor.new
-  end
-
-  # GET /doctors/1/edit
-  def edit
+    render json: @doctor
   end
 
   # POST /doctors
@@ -24,35 +18,34 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.new(doctor_params)
 
     if @doctor.save
-      redirect_to @doctor, notice: 'Doctor was successfully created.'
+      render json: @doctor, status: :created, location: @doctor
     else
-      render :new
+      render json: @doctor.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /doctors/1
   def update
     if @doctor.update(doctor_params)
-      redirect_to @doctor, notice: 'Doctor was successfully updated.'
+      render json: @doctor
     else
-      render :edit
+      render json: @doctor.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /doctors/1
   def destroy
     @doctor.destroy
-    redirect_to doctors_url, notice: 'Doctor was successfully destroyed.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_doctor
-      @doctor = Doctor.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_doctor
+    @doctor = Doctor.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def doctor_params
-      params.require(:doctor).permit(:name, :specialty, :photo_url, :accepts_insurance)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def doctor_params
+    params.require(:doctor).permit(:name, :specialty, :photo_url, :accepts_insurance)
+  end
 end

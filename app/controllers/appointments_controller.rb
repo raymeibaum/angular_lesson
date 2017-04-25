@@ -4,20 +4,13 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   def index
     @appointments = Appointment.all
+
+    render json: @appointments
   end
 
   # GET /appointments/1
   def show
-  end
-
-  # GET /appointments/new
-  def new
-    @appointment = Appointment.new
-    @doctors = Doctor.all
-  end
-
-  # GET /appointments/1/edit
-  def edit
+    render json: @appointment
   end
 
   # POST /appointments
@@ -25,26 +18,24 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
 
     if @appointment.save
-      redirect_to @appointment, notice: 'Appointment was successfully created.'
+      render json: @appointment, status: :created, location: @appointment
     else
-      render :new
+      render json: @appointment.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /appointments/1
   def update
     if @appointment.update(appointment_params)
-      redirect_to @appointment, notice: 'Appointment was successfully updated.'
+      render json: @appointment
     else
-      render :edit
+      render json: @appointment.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /appointments/1
-  # DELETE /appointments/1.json
   def destroy
     @appointment.destroy
-    redirect_to appointments_url, notice: 'Appointment was successfully destroyed.'
   end
 
   private
