@@ -15,7 +15,7 @@
     <% @appointments.each do |appointment| %>
       <tr>
         <td><%= appointment.doctor.name %></td>
-        <td><%= appointment.user.email %></td>
+        <td><%= appointment.user.name %></td>
         <td><%= appointment.reason %></td>
         <td><%= appointment.date %></td>
         <td><%= link_to 'Show', appointment %></td>

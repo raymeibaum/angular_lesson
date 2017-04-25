@@ -4,5 +4,5 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root to: 'client#index'
+  root to: 'doctors#index'
 end

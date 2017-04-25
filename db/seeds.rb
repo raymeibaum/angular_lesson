@@ -52,7 +52,7 @@ Doctor.create(
 )
 
 10.times do
-  User.create(email: Faker::Internet.email, password: Faker::Lorem.word)
+  User.create(email: Faker::Internet.email, password: Faker::Lorem.word, name: Faker::Name.name)
 end
 
 
