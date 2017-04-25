@@ -1,4 +1,4 @@
 class Doctor < ApplicationRecord
-  has_many :appointments, dependant: :destroy
+  has_many :appointments, dependent: :destroy
   validates :name, presence: true, uniqueness: true
 end

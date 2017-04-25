@@ -13,6 +13,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   def new
     @appointment = Appointment.new
+    @doctors = Doctor.all
   end
 
   # GET /appointments/1/edit
@@ -21,6 +22,7 @@ class AppointmentsController < ApplicationController
 
   # POST /appointments
   def create
+    byebug
     @appointment = Appointment.new(appointment_params)
 
     if @appointment.save
